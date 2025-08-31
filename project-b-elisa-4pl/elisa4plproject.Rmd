@@ -1,0 +1,141 @@
+---
+title: "ELISA 4PL Project"
+author: "Sarah Yusuf"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(drc)
+
+dir.create("data", showWarnings = FALSE)
+dir.create("docs", showWarnings = FALSE)
+```
+
+
+## 1) Simulate standards and unknowns
+
+```{r simulate}
+set.seed(42)
+
+# True 4PL parameters (for simulation)
+a_top <- 2.0    # max absorbance
+d_bot <- 0.05   # background
+c_ec50 <- 10.0  # midpoint concentration (EC50-like)
+b_slope <- 1.2  # hill slope
+
+# 4PL function
+f4pl <- function(x, a, d, c, b) d + (a - d) / (1 + (x / c)^b)
+
+# Standards (ng/mL), 3 replicates each
+std_conc <- c(0, 0.5, 1, 2, 5, 10, 20, 40)
+reps <- 3
+
+std <- expand.grid(conc = std_conc, rep = seq_len(reps)) |>
+  as_tibble() |>
+  mutate(
+    absorb_true = f4pl(conc, a_top, d_bot, c_ec50, b_slope),
+    absorb = pmax(0, rnorm(n(), mean = absorb_true, sd = 0.05))
+  )
+
+# Unknowns with hidden true concentrations
+unknown_true <- tibble(sample_id = paste0("U", 1:6),
+                       true_conc = c(0.8, 3, 8, 12, 18, 30))
+
+unknown <- unknown_true |>
+  mutate(
+    absorb_true = f4pl(true_conc, a_top, d_bot, c_ec50, b_slope),
+    absorb = pmax(0, rnorm(n(), mean = absorb_true, sd = 0.05))
+  )
+
+write_csv(std, "data/elisa_standards.csv")
+write_csv(unknown, "data/elisa_unknowns.csv")
+
+head(std)
+head(unknown)
+```
+
+## 2) Aggregate replicates
+
+```{r aggregate}
+std_agg <- std |>
+  group_by(conc) |>
+  summarise(
+    mean_abs = mean(absorb),
+    sd_abs   = sd(absorb),
+    n        = n(),
+    .groups = "drop"
+  )
+
+std_agg
+```
+
+## 3) Fit 4PL curve
+
+```{r fit}
+# LL.4 parameter names order here: b (slope), c (midpoint), d (bottom), a (top)
+fit <- drm(mean_abs ~ conc, data = std_agg, fct = LL.4(names = c("b","c","d","a")))
+summary(fit)
+coef(fit)
+```
+
+## 4) Plot curve with error bars
+
+```{r plot}
+# Build a strictly positive x-range (avoid 0 for log10 scale)
+min_pos <- min(std_agg$conc[std_agg$conc > 0])
+max_pos <- max(std_agg$conc)
+newx <- data.frame(conc = seq(min_pos, max_pos, length.out = 200))  # use data.frame instead of tibble
+
+# Get predictions as a numeric vector
+pred_vals <- as.numeric(predict(fit, newdata = newx))
+
+# Combine into a tibble for plotting
+pred <- tibble(conc = newx$conc, fit = pred_vals)
+
+# Plot with error bars + fitted curve
+p <- ggplot() +
+  geom_point(data = std_agg, aes(conc, mean_abs), size = 2) +
+  geom_errorbar(data = std_agg, aes(x = conc, ymin = mean_abs - sd_abs, ymax = mean_abs + sd_abs), width = 0.1) +
+  geom_line(data = pred, aes(conc, fit), linewidth = 1) +
+  scale_x_continuous(trans = "log10") +
+  labs(x = "Concentration (ng/mL, log scale)", y = "Absorbance",
+       title = "ELISA Standard Curve (4PL fit)") +
+  theme_minimal()
+
+p
+ggsave("docs/elisa_curve.png", p, width = 6, height = 4, dpi = 200)
+```
+
+## 5) Predict unknowns (invert the model)
+
+```{r predict}
+predict_conc <- function(y_abs, model, lower, upper){
+  f <- function(x) predict(model, newdata = data.frame(conc = x)) - y_abs
+  lower <- max(lower, 1e-6)
+  res <- try(uniroot(f, lower = lower, upper = upper)$root, silent = TRUE)
+  if(inherits(res, "try-error")) return(NA_real_) else return(res)
+}
+
+range_x <- range(std_agg$conc)
+
+pred_unknown <- unknown |>
+  rowwise() |>
+  mutate(est_conc = predict_conc(absorb, fit, min(range_x), max(range_x))) |>
+  ungroup()
+
+pred_unknown
+write_csv(pred_unknown, "docs/unknowns_predicted.csv")
+```
+
+## 6) Residuals check
+
+```{r residuals}
+res <- residuals(fit)
+plot(fitted(fit), res,
+     xlab = "Fitted absorbance", ylab = "Residuals",
+     main = "Residuals vs Fitted (4PL)")
+abline(h = 0, lty = 2, col = "grey50")
+```
