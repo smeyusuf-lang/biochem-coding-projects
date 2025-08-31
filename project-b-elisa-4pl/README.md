@@ -24,17 +24,18 @@ Here, the analysis is carried out entirely in R to ensure the workflow is transp
 ---
 
 ## Project Structure
+```
 project-b-elisa-4pl/
 │
-├── elisa4plproject.Rmd # RMarkdown notebook
-├── data/ # Simulated raw data
-│ ├── elisa_standards.csv
-│ └── elisa_unknowns.csv
-├── docs/ # Results and outputs
-│ ├── elisa_curve.png
-│ └── unknowns_predicted.csv
+├── elisa4plproject.Rmd         # RMarkdown notebook
+├── data/                       # Simulated raw data
+│   ├── elisa_standards.csv
+│   └── elisa_unknowns.csv
+├── docs/                       # Results and outputs
+│   ├── elisa_curve.png
+│   └── unknowns_predicted.csv
 └── README.md
-
+```
 yaml
 Copy code
 
