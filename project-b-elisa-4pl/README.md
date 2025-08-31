@@ -1,53 +1,52 @@
 create project-b-elisa-4pl folder
-# Project B: ELISA 4PL Analysis in R
+# ELISA 4PL Analysis in R
 
-This project recreates a classic **ELISA (Enzyme-Linked Immunosorbent Assay)** analysis workflow in R.  
-Instead of Excel-based curve fitting, I built a reproducible pipeline that simulates ELISA data, fits a **4-parameter logistic (4PL) model**, and predicts unknown sample concentrations.
+This project demonstrates how to analyse data from an **Enzyme-Linked Immunosorbent Assay (ELISA)** using R.  
+The workflow simulates experimental data, fits a **four-parameter logistic (4PL)** model, and predicts the concentration of unknown samples.
 
 ---
 
-## What I did
-- Simulated ELISA standard curve data with replicates and added experimental noise.  
+## Overview
+ELISAs are widely used to quantify proteins, hormones, or other biomolecules.  
+Data are typically processed in Excel, but this approach can be hard to reproduce and share.  
+Here, the analysis is carried out in R to ensure the workflow is transparent, reproducible, and version-controlled.
+
+---
+
+## Methods
+- Simulated ELISA standards and unknowns with replicate noise.  
 - Aggregated replicates (mean ± SD).  
-- Fit a 4-parameter logistic curve using the `drc` package.  
-- Plotted the standard curve with error bars on a log10 axis.  
-- Predicted concentrations of unknown samples by inverting the model.  
-- Exported results as CSV and PNG for reporting.  
+- Fitted a 4PL curve using the `drc` package.  
+- Visualised the standard curve on a log10 scale with error bars.  
+- Estimated concentrations of unknown samples from the fitted model.  
 
 ---
 
-## Example output
-
-Here is the fitted **4PL ELISA standard curve** with error bars and fitted line:  
+## Example Output
+The fitted 4PL standard curve with error bars and predicted line:  
 
 ![ELISA 4PL Curve](docs/elisa_curve.png)
 
 ---
 
-## Project structure
+## File Structure
 project-b-elisa-4pl/
 │
-├── elisa4plproject.Rmd # RMarkdown notebook with full workflow
-├── data/ # Simulated input data
+├── elisa4plproject.Rmd # RMarkdown notebook
+├── data/ # Simulated raw data
 │ ├── elisa_standards.csv
 │ └── elisa_unknowns.csv
-├── docs/ # Output results
+├── docs/ # Results and plots
 │ ├── elisa_curve.png
 │ └── unknowns_predicted.csv
-└── README.md # Project description (this file)
+└── README.md
 
 yaml
 Copy code
 
 ---
 
-## Why this matters
-ELISA is one of the most widely used assays in biomedical science.  
-Automating the analysis in R makes the workflow **transparent, reproducible, and industry-ready** — valuable skills for both research and pharma.  
-
----
-
-## Next steps
-- Extend the workflow to a **5-parameter logistic (5PL)** model.  
-- Import and analyse **real ELISA plate data**.  
-- Build a **Shiny app** for interactive curve fitting and QC.
+## Next Steps
+- Extend to a 5-parameter logistic (5PL) model.  
+- Import and process real ELISA plate-reader data.  
+- Build a Shiny app for interactive fitting and QC.
