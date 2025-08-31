@@ -36,8 +36,6 @@ project-b-elisa-4pl/
 │   └── unknowns_predicted.csv
 └── README.md
 ```
-yaml
-Copy code
 
 ---
 
