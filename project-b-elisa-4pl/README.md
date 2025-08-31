@@ -6,7 +6,7 @@ Instead of Excel-based curve fitting, I built a reproducible pipeline that simul
 
 ---
 
-## 🔬 What I did
+## What I did
 - Simulated ELISA standard curve data with replicates and added experimental noise.  
 - Aggregated replicates (mean ± SD).  
 - Fit a 4-parameter logistic curve using the `drc` package.  
@@ -16,7 +16,7 @@ Instead of Excel-based curve fitting, I built a reproducible pipeline that simul
 
 ---
 
-## 📊 Example output
+## Example output
 
 Here is the fitted **4PL ELISA standard curve** with error bars and fitted line:  
 
@@ -24,7 +24,7 @@ Here is the fitted **4PL ELISA standard curve** with error bars and fitted line:
 
 ---
 
-## 📂 Project structure
+## Project structure
 project-b-elisa-4pl/
 │
 ├── elisa4plproject.Rmd # RMarkdown notebook with full workflow
@@ -41,13 +41,13 @@ Copy code
 
 ---
 
-## 💡 Why this matters
+## Why this matters
 ELISA is one of the most widely used assays in biomedical science.  
 Automating the analysis in R makes the workflow **transparent, reproducible, and industry-ready** — valuable skills for both research and pharma.  
 
 ---
 
-## 🚀 Next steps
+## Next steps
 - Extend the workflow to a **5-parameter logistic (5PL)** model.  
 - Import and analyse **real ELISA plate data**.  
 - Build a **Shiny app** for interactive curve fitting and QC.
