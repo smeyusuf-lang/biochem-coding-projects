@@ -13,33 +13,3 @@ Implements a four-parameter logistic model (4-PL) for ELISA standard curves. Cal
 ### Cheminformatics Property Prediction  
 Uses RDKit and scikit-learn to explore molecular properties. Computes basic descriptors (MolWt, LogP, HBD, HBA, TPSA), trains a simple regression model to predict solubility (ESOL data), evaluates model with MAE and RMSE metrics, and produces error and parity plots to visualise predictions.
 
-## Getting Started
-
-Clone the repository:
-
-```bash
-git clone https://github.com/smeyusuf-lang/biochem-coding-projects.git
-Install dependencies:
-
-Python: pip install -r requirements.txt (RDKit, scikit-learn, pandas, matplotlib)
-
-R: install the packages listed in each project’s README (tidyverse, nls, etc.)
-
-Each project folder has its own notebook and instructions. Run them in order to reproduce the analyses and plots.
-
-Repository Structure
-css
-Copy code
-biochem-coding-projects/
-├── project-a-drug-response/
-├── project-b-elisa-4pl/
-├── project-c-cheminformatics/
-└── assets/ (figures, images)
-Why This Portfolio Exists
-Demonstrates how I apply programming to real biochemistry problems, showcases reproducible workflows with clear, well-documented code, and provides recruiters and collaborators with a snapshot of my coding progress.
-
-Next Steps
-Add screenshots/plots of each project’s outputs to the repo, finalise requirements/environment files for reproducibility, and expand the cheminformatics section with more descriptors and models.
-
-Author: Sarah Yusuf (MSci Biochemistry, University of Birmingham)
-LinkedIn: linkedin.com/in/sarah-yusuf-74303732a
