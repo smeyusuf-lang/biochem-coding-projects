@@ -8,7 +8,7 @@ I wanted to get some hands-on experience with RDKit and scikit-learn by trying o
 - **Data & Outputs:** CSV with computed descriptors and the saved plots from the notebook.
 
 ## Why I did it
-I’m interested in computational chemistry and wanted a small project that mirrors what might happen in a placement: taking chemical structures, turning them into numbers, exploring trends and doing a quick prediction model.
+I’m interested in computational chemistry and wanted to experiment with it by taking chemical structures, turning them into numbers, exploring trends and doing a quick prediction model.
 
 ## Next steps
 - Try different descriptors (e.g. fingerprints)
