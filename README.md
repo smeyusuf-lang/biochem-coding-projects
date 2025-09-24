@@ -1,11 +1,11 @@
 # Biochemistry & Informatics Projects — Sarah Yusuf  
 
-Hi! I’m **Sarah Yusuf**, an MSci Biochemistry student at the University of Birmingham preparing for my professional placement year (2026).  
-I’m passionate about bridging **wet-lab biology** with **computational analysis** to support data-driven decision making in drug discovery.  
+Hi! I’m **Sarah Yusuf**, an MSci Biochemistry student at the University of Birmingham, preparing for my professional placement year (2026).  
+I’m passionate about bridging wet-lab biology with computational analysis to support data-driven decision-making in drug discovery.  
 
-This repository is my **informatics portfolio**, bringing together small projects in Python and R that analyse biological or chemical data.  
+This repository is my informatics portfolio, bringing together small projects in Python and R that analyse biological or chemical data.  
 Each folder contains a focused project demonstrating how I apply data cleaning, modelling, and visualisation techniques to real-world problems.  
-The projects reflect my interests in **drug discovery, assay analysis, and cheminformatics**.
+The projects reflect my interests in drug discovery, assay analysis, and cheminformatics.
 
 ---
 
