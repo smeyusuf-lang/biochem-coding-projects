@@ -1,4 +1,3 @@
-create project-b-elisa-4pl folder
 # ELISA 4PL Analysis in R
 
 This project demonstrates how to analyse data from an **Enzyme-Linked Immunosorbent Assay (ELISA)** using R.  
