@@ -1,7 +1,7 @@
 # Project B: ELISA 4PL Analysis in R
 
-This project demonstrates how to analyse data from an **Enzyme-Linked Immunosorbent Assay (ELISA)** using R.  
-The workflow simulates experimental data, fits a **four-parameter logistic (4PL)** model, and predicts the concentration of unknown samples.
+This project demonstrates how to analyse data from an Enzyme-Linked Immunosorbent Assay (ELISA) using R.  
+The workflow simulates experimental data, fits a four-parameter logistic (4PL) model, and predicts the concentration of unknown samples.
 
 ---
 
