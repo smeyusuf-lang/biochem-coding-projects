@@ -1,4 +1,3 @@
-# notebooks
 # Project A: Dose–Response Modelling
 
 ## Overview
