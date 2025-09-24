@@ -9,7 +9,7 @@ The projects reflect my interests in **drug discovery, assay analysis, and chemi
 
 ---
 
-## 📂 Projects Overview  
+## Projects Overview  
 
 ### [Drug Response Analysis](./project-a-drug-response)  
 Fits dose–response curves to pharmacology data to estimate IC₅₀/EC₅₀ values.  
@@ -34,7 +34,7 @@ Uses RDKit and scikit-learn to explore molecular properties.
 
 ---
 
-## 🛠 Skills Demonstrated  
+## Skills Demonstrated  
 
 - Data cleaning, transformation & visualisation  
 - Statistical modelling of biological data  
@@ -44,7 +44,7 @@ Uses RDKit and scikit-learn to explore molecular properties.
 
 ---
 
-## 🚀 Future Goals  
+## Future Goals  
 
 I am actively expanding this portfolio with:  
 - **New Python and R mini-projects** focused on drug discovery and informatics  
@@ -55,7 +55,7 @@ My long-term aspiration is to work at the intersection of **experimental biology
 
 ---
 
-## 📫 Contact  
+## Contact  
 
 - **LinkedIn:** [Sarah Yusuf](https://www.linkedin.com/in/sarah-yusuf-74303732a)  
 - **GitHub Profile:** [smeyusuf-lang](https://github.com/smeyusuf-lang)  
